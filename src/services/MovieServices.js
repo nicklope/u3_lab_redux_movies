@@ -12,13 +12,13 @@ export const GetMovies = async () => {
   }
 }
 
-// export const GetMovieDetails = async (movieId) => {
-//   try {
-//     const res = await Client.get(
-//       `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`
-//     )
-//     return res.data.Products
-//   } catch (error) {
-//     throw error
-//   }
-// }
+export const GetMovieDetails = async (movieId) => {
+  try {
+    const res = await Client.get(
+      `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`
+    )
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}

@@ -14,3 +14,17 @@ export const LoadMovies = () => {
     }
   }
 }
+export const LoadMovieDetails = (id) => {
+  return async (dispatch) => {
+    try {
+      const movieDetails = await GetMovieDetails(id)
+
+      dispatch({
+        type: GET_MOVIE,
+        payload: movieDetails
+      })
+    } catch (error) {
+      throw error
+    }
+  }
+}
