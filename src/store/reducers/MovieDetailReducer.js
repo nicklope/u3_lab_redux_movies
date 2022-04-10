@@ -7,7 +7,7 @@ const initialState = {
 const MovieDetailReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_MOVIE:
-      return { ...state, products: action.payload }
+      return { ...state, movieDetails: action.payload }
     default:
       return { ...state }
   }

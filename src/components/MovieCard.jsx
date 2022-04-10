@@ -2,9 +2,10 @@ import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { LoadMovies } from '../store/actions/MovieActions'
+import { useNavigate, useParams } from 'react-router-dom'
 
-const mapStateToProps = ( state ) => {
-  return { movieState : state.movieState.courses || [] }
+const mapStateToProps = ( movies) => {
+  return { movies }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -12,8 +13,12 @@ const mapDispatchToProps = (dispatch) => {
     fetchMovies: () => dispatch(LoadMovies())
   }
 }
-let movies 
+
 const MovieCard = (props) => {
+  
+  let navigate = useNavigate()
+
+
   useEffect(() => {
     props.fetchMovies()
     console.log(props)
@@ -22,10 +27,12 @@ const MovieCard = (props) => {
 
   return (
     <div>
-      {props.movieState.movies.results.map((movie)=>(
+      {props.movies.movieState.movies.map((movie)=>(
     <div id='movie-container' key={movie.id}>
 
-  <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}></img>
+  <img 
+  onClick={() => navigate(`/details/${movie.id}`)}
+  src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}></img>
   
   <h1>{movie.title}</h1>
   </div>
